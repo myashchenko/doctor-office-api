@@ -1,0 +1,12 @@
+{
+  "firstName" : "First Name",
+  "lastName" : "Last Name",
+  "dateOfBirth" : "11-11-1990",
+  "gender" : "MALE",
+  "address" : {
+    "city" : "Kyiv",
+    "street" : "street",
+    "homeNumber" : "1",
+    "apartmentNumber" : "1"
+  }
+}

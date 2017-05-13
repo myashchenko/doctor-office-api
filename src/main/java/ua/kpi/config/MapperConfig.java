@@ -4,6 +4,7 @@ import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ua.kpi.mapper.LocalDateMapper;
 
 /**
  * @author Mykola Yashchenko
@@ -13,6 +14,10 @@ public class MapperConfig {
 
     @Bean
     public MapperFacade mapperFacade() {
-        return new DefaultMapperFactory.Builder().build().getMapperFacade();
+        DefaultMapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapperFactory
+                .getConverterFactory()
+                .registerConverter(new LocalDateMapper());
+        return mapperFactory.getMapperFacade();
     }
 }

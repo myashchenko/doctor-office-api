@@ -3,6 +3,7 @@ package ua.kpi.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public class CreatePatientRequest {
     @NotBlank
     private String lastName;
     @NotBlank
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private String dateOfBirth;
     @NotBlank
     @Pattern(regexp = "MALE|FEMALE", flags = Pattern.Flag.CASE_INSENSITIVE)

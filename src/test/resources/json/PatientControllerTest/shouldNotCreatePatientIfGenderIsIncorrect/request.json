@@ -1,0 +1,18 @@
+{
+  "firstName" : "First Name",
+  "lastName" : "Last Name",
+  "dateOfBirth" : "11-11-1990",
+  "gender" : "INCORRECT",
+  "passport" : {
+    "series" : "NM",
+    "number" : 12312,
+    "date" : "11-11-2005",
+    "where" : "Kyiv"
+  },
+  "address" : {
+    "city" : "Kyiv",
+    "street" : "street",
+    "homeNumber" : "1",
+    "apartmentNumber" : "1"
+  }
+}

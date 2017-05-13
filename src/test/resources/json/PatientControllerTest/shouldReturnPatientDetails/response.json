@@ -1,0 +1,19 @@
+{
+  "id": "1",
+  "firstName": "Іван",
+  "lastName": "Іванов",
+  "dateOfBirth": "22-11-2000",
+  "gender": "MALE",
+  "address": {
+    "city": "Київ",
+    "street": "Металістів",
+    "homeNumber": "2",
+    "apartmentNumber": "90"
+  },
+  "passport": {
+    "series": "НМ",
+    "number": 232432,
+    "date": "2011-11-11",
+    "where": "Київським РВУМВС України"
+  }
+}
