@@ -16,6 +16,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Mykola Yashchenko
@@ -31,7 +32,9 @@ public class MessageController {
     @MessageMapping("/messages")
     @SendTo("/topic/messages")
     public List<MessageItem> getMessages() {
-        return Collections.emptyList();
+        return messageRepository.findAll().stream()
+                .map(this::toMessageItem)
+                .collect(Collectors.toList());
     }
 
     @MessageMapping("/messages/send")
@@ -43,11 +46,14 @@ public class MessageController {
 
         messageRepository.save(message);
 
+        return Collections.singletonList(toMessageItem(message));
+    }
+
+    private MessageItem toMessageItem(Message message) {
         MessageItem messageItem = new MessageItem();
         messageItem.setText(message.getText());
         messageItem.setTime(message.getTime().toString());
-        messageItem.setDoctorName(principal.getName());
-
-        return Collections.singletonList(messageItem);
+        messageItem.setDoctorName(message.getDoctor().getEmail());
+        return messageItem;
     }
 }
