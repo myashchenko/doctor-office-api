@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ua.kpi.dto.request.CreatePatientRequest;
+import ua.kpi.dto.request.CreatePatientCardRequest;
 import ua.kpi.dto.response.PatientCardItem;
 import ua.kpi.entity.PatientCard;
 import ua.kpi.exception.EntityNotFoundException;
@@ -12,7 +12,7 @@ import ua.kpi.repository.PatientCardRepository;
 import ua.kpi.repository.PatientRepository;
 
 import javax.validation.Valid;
-import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -54,7 +54,10 @@ public class PatientCardController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void create(@Valid @RequestBody CreatePatientRequest createPatientRequest, Principal principal) {
-
+    public void create(@Valid @RequestBody CreatePatientCardRequest createPatientCardRequest) {
+        PatientCard patientCard = mapperFacade.map(createPatientCardRequest, PatientCard.class);
+        patientCard.setDate(LocalDate.now());
+        patientCard.setPatient(patientRepository.findOne(createPatientCardRequest.getPatientId()));
+        patientCardRepository.save(patientCard);
     }
 }
