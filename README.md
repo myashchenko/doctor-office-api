@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/yashchenkon/doctor-office-api.svg)](https://travis-ci.org/yashchenkon/doctor-office-api.svg)
+[![Build Status](https://travis-ci.org/yashchenkon/doctor-office-api.svg)](https://travis-ci.org/yashchenkon/doctor-office-api)
 
 ## What does it do?
 
