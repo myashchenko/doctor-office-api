@@ -1,6 +1,7 @@
 package ua.kpi.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,7 @@ import java.util.Set;
 /**
  * @author Mykola Yashchenko
  */
+@Slf4j
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -27,6 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(s);
 
         if (user == null) {
+            log.error("User with email {} not found", s);
             throw new UsernameNotFoundException("User with email=" + s + " doesn't exist");
         }
 
@@ -35,6 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private Set<GrantedAuthority> getAuthorities(User user) {
-        return Collections.singleton(new SimpleGrantedAuthority("DOCTOR"));
+        // todo add roles
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_DOCTOR"));
     }
 }
