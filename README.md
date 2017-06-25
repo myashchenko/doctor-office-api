@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/YashchenkoN/doctor-office-api.svg?branch=master)](https://travis-ci.org/YashchenkoN/doctor-office-api)
+[![Test Coverage](https://img.shields.io/codecov/c/github/YashchenkoN/doctor-office-api.svg)](https://codecov.io/gh/YashchenkoN/doctor-office-api)
 
 ## What does it do?
 
