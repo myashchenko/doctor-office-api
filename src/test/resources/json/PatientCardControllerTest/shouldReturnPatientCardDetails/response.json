@@ -1,0 +1,14 @@
+{
+  "date": "2011-11-11",
+  "workplace": "Робоче місце",
+  "complaint": "Жалоба",
+  "diagnosis": "gdfg",
+  "relatedDiseases": "fdsfsd",
+  "visualInspection": "gfdg",
+  "_links": {
+    "self": {
+      "href": "http://localhost/cards/1/details"
+    }
+  },
+  "id": "1"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "date": "2011-11-11",
+    "links": [
+      {
+        "rel": "details",
+        "href": "http://localhost/cards/1/details"
+      }
+    ],
+    "id": "1"
+  }
+]

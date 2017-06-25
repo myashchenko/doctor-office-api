@@ -1,5 +1,4 @@
 {
-  "id": "1",
   "firstName": "Іван",
   "lastName": "Іванов",
   "dateOfBirth": "22-11-2000",
@@ -15,5 +14,14 @@
     "number": 232432,
     "date": "2011-11-11",
     "where": "Київським РВУМВС України"
-  }
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost/patients/1"
+    },
+    "card": {
+      "href": "http://localhost/cards/1"
+    }
+  },
+  "id": "1"
 }

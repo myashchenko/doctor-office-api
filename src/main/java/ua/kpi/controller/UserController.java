@@ -11,6 +11,11 @@ import ua.kpi.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  * @author Mykola Yashchenko
@@ -25,7 +30,14 @@ public class UserController {
 
     @GetMapping("/me")
     public CurrentUser me(Principal principal) {
-        return new CurrentUser(principal.getName());
+        CurrentUser currentUser = new CurrentUser(principal.getName());
+
+        currentUser.add(linkTo(methodOn(UserController.class).me(principal)).withSelfRel());
+        currentUser.add(linkTo(
+                methodOn(EventController.class).findByDate(LocalDate.now().toString(), principal)).withRel("events"));
+        currentUser.add(linkTo(methodOn(MessageController.class).getMessages()).withRel("messages"));
+
+        return currentUser;
     }
 
     @PostMapping

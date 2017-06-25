@@ -29,8 +29,8 @@ public class EventController {
     private final UserRepository userRepository;
     private final MapperFacade mapperFacade;
 
-    @GetMapping("/{date}")
-    public List<EventItem> findByDate(@PathVariable("date") String date, Principal principal) {
+    @GetMapping
+    public List<EventItem> findByDate(@RequestParam("date") String date, Principal principal) {
         LocalDate localDate = LocalDate.parse(date);
 
         return eventRepository.findAllByDateAndDoctorEmail(localDate, principal.getName()).stream()

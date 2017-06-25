@@ -8,7 +8,6 @@ import ua.kpi.dto.request.CreatePatientRequest;
 import ua.kpi.dto.response.PatientDetailItem;
 import ua.kpi.dto.response.PatientListItem;
 import ua.kpi.entity.Patient;
-import ua.kpi.exception.EntityNotFoundException;
 import ua.kpi.repository.PatientRepository;
 import ua.kpi.repository.UserRepository;
 
@@ -17,6 +16,8 @@ import java.security.Principal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  * @author Mykola Yashchenko
@@ -36,9 +37,10 @@ public class PatientController {
         return patientRepository.findAllByDoctorEmail(principal.getName()).stream()
                 .map(p -> {
                     PatientListItem patientListItem = new PatientListItem();
-                    patientListItem.setId(p.getId());
+                    patientListItem.setPatientId(p.getId());
                     patientListItem.setFirstName(p.getFirstName());
                     patientListItem.setLastName(p.getLastName());
+                    patientListItem.add(linkTo(methodOn(PatientController.class).get(p.getId(), principal)).withRel("details"));
                     return patientListItem;
                 }).collect(toList());
     }
@@ -46,12 +48,15 @@ public class PatientController {
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/{id}")
     public PatientDetailItem get(@PathVariable("id") String id, Principal principal) {
-        Patient patientProjection = patientRepository.findByIdAndDoctorEmail(id, principal.getName());
-        if (patientProjection == null) {
-            throw new EntityNotFoundException("Patient with id = %s doesn't exist", id);
-        }
+        Patient patientProjection = patientRepository.getByIdAndDoctorEmail(id, principal.getName());
 
-        return mapperFacade.map(patientProjection, PatientDetailItem.class);
+        PatientDetailItem patientDetails = mapperFacade.map(patientProjection, PatientDetailItem.class);
+        patientDetails.setPatientId(id);
+
+        patientDetails.add(linkTo(methodOn(PatientController.class).get(id, principal)).withSelfRel());
+        patientDetails.add(linkTo(methodOn(PatientCardController.class).getList(id)).withRel("card"));
+
+        return patientDetails;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
