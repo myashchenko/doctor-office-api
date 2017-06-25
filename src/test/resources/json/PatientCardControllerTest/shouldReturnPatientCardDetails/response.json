@@ -7,7 +7,7 @@
   "visualInspection": "gfdg",
   "_links": {
     "self": {
-      "href": "http://localhost/cards/1/details"
+      "href": "http://localhost:8080/cards/1/details"
     }
   },
   "id": "1"

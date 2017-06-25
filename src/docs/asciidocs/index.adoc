@@ -1,0 +1,192 @@
+= Doctor's office API Guide
+Mykola Yashchenko;
+:doctype: book
+:toc:
+:sectanchors:
+:sectlinks:
+:toclevels: 4
+:source-highlighter: highlightjs
+
+[[overview]]
+= Overview
+
+[[overview-http-verbs]]
+== HTTP verbs
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PUT`
+| Used to create a new resource as well as replace existing resource
+
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist
+
+| `405 Method Not Allowed`
+| The requested resource does not support method
+
+| `409 Conflict`
+| The request tries to put the resource into a conflicting state
+|===
+
+[[overview-hypermedia]]
+== Hypermedia
+
+This API uses hypermedia and resources include links to other resources in their
+responses. Responses are in http://stateless.co/hal_specification.html[Hypertext Application
+Language (HAL)] format. Links can be found beneath the `_links` key. Users of the API should
+not create URIs themselves, instead they should use the above-described links to navigate
+from resource to resource.
+
+[[resources]]
+= Resources
+
+[[patients]]
+== Patients
+
+The Patients resource / 'patients' relation is used to create and get patients.
+
+[[resources-patients-create]]
+
+=== Creating a patient
+
+A `POST` request is used to create a patient
+
+==== Example curl request
+
+include::{snippets}/patients-create/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/patients-create/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/patients-create/http-response.adoc[]
+
+[[resources-patients-list]]
+
+=== Get a list of patients
+
+A `GET` request is used to get a list of patients
+
+==== Example curl request
+
+include::{snippets}/patients-list/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/patients-list/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/patients-list/http-response.adoc[]
+
+[[resources-patients-details]]
+
+=== Get details of a patient
+
+A `GET` request is used to get a details of a patient
+
+==== Example curl request
+
+include::{snippets}/patients-details/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/patients-details/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/patients-details/http-response.adoc[]
+
+[[cards]]
+== Cards
+
+The Cards resource / 'cards' relation is used to create and get cards.
+
+[[resources-cards-create]]
+
+=== Creating a card
+
+A `POST` request is used to create a patient
+
+==== Example curl request
+
+include::{snippets}/cards-create/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/cards-create/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/cards-create/http-response.adoc[]
+
+[[resources-cards-list]]
+
+=== Get a list of cards
+
+A `GET` request is used to get a list of cards
+
+==== Example curl request
+
+include::{snippets}/cards-list/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/cards-list/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/cards-list/http-response.adoc[]
+
+[[resources-cards-details]]
+
+=== Get details of a card
+
+A `GET` request is used to get a details of a card
+
+==== Example curl request
+
+include::{snippets}/cards-details/curl-request.adoc[]
+
+==== Example HTTP request
+
+include::{snippets}/cards-details/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/cards-details/http-response.adoc[]

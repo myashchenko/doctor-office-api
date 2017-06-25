@@ -17,10 +17,10 @@
   },
   "_links": {
     "self": {
-      "href": "http://localhost/patients/1"
+      "href": "http://localhost:8080/patients/1"
     },
     "card": {
-      "href": "http://localhost/cards/1"
+      "href": "http://localhost:8080/cards/1"
     }
   },
   "id": "1"

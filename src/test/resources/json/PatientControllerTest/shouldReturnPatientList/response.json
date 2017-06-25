@@ -5,7 +5,7 @@
     "links": [
       {
         "rel": "details",
-        "href": "http://localhost/patients/1"
+        "href": "http://localhost:8080/patients/1"
       }
     ],
     "id": "1"
@@ -16,7 +16,7 @@
     "links": [
       {
         "rel": "details",
-        "href": "http://localhost/patients/2"
+        "href": "http://localhost:8080/patients/2"
       }
     ],
     "id": "2"

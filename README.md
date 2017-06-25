@@ -6,6 +6,18 @@
 
 It's an API for mobile application.
 
+## Building and Running
+
+Make sure that Java 8 is installed and is on the path.
+
+Project uses Maven as a build tool. Building is as easy as running the following shell command on Linux / Unix systems:
+
+    mvn clean install
+    
+Once the application is built, run it as follows:
+
+java -jar target/diploma-${version}.jar
+
 ## License
 
 (The MIT License)
