@@ -16,7 +16,7 @@ Project uses Maven as a build tool. Building is as easy as running the following
     
 Once the application is built, run it as follows:
 
-java -jar target/diploma-${version}.jar
+    java -jar target/diploma-${version}.jar
 
 ## License
 
