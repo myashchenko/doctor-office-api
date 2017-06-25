@@ -1,5 +1,6 @@
 package ua.kpi.mapper;
 
+import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.converter.BidirectionalConverter;
 import ma.glasnost.orika.metadata.Type;
 
@@ -14,12 +15,12 @@ public class LocalDateMapper extends BidirectionalConverter<String, LocalDate> {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Override
-    public LocalDate convertTo(String s, Type<LocalDate> type) {
+    public LocalDate convertTo(String s, Type<LocalDate> type, MappingContext mappingContext) {
         return LocalDate.parse(s, formatter);
     }
 
     @Override
-    public String convertFrom(LocalDate localDate, Type<String> type) {
+    public String convertFrom(LocalDate localDate, Type<String> type, MappingContext mappingContext) {
         return localDate.toString();
     }
 }
