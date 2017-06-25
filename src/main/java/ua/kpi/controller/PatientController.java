@@ -11,6 +11,7 @@ import ua.kpi.entity.Patient;
 import ua.kpi.repository.PatientRepository;
 import ua.kpi.repository.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
@@ -49,6 +50,9 @@ public class PatientController {
     @GetMapping("/{id}")
     public PatientDetailItem get(@PathVariable("id") String id, Principal principal) {
         Patient patientProjection = patientRepository.getByIdAndDoctorEmail(id, principal.getName());
+        if (patientProjection == null) {
+            throw new EntityNotFoundException();
+        }
 
         PatientDetailItem patientDetails = mapperFacade.map(patientProjection, PatientDetailItem.class);
         patientDetails.setPatientId(id);

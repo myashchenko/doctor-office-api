@@ -9,5 +9,16 @@
       }
     ],
     "id": "1"
+  },
+  {
+    "firstName": "Іван",
+    "lastName": "Іванов",
+    "links": [
+      {
+        "rel": "details",
+        "href": "http://localhost/patients/2"
+      }
+    ],
+    "id": "2"
   }
 ]
